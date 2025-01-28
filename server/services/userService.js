@@ -4,7 +4,7 @@ function create(username, password) {
   return knex('users').insert({
     username,
     password,
-  });
+  }).returning('*').then(([user]) => user);
 }
 
 function getByUsername(username) {
